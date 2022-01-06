@@ -13,26 +13,24 @@ require_once('Core.php');
 			<img src="/images/the-newsletter@2x.jpg" alt="An old man in Renaissance-era costume reading a sheet of paper."/>
 		</picture>
 		<p>Subscribe to receive news, updates, and more from Standard Ebooks. Your information will never be shared, and you can unsubscribe at any time.</p>
-		<form action="https://standardebooks.us7.list-manage.com/subscribe/post?u=da307dcb73c74f6a3d597f056&amp;id=f8832654aa" method="post">
-			<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-			<div class="anti-spam" aria-hidden="true"><input type="text" name="b_da307dcb73c74f6a3d597f056_f8832654aa" tabindex="-1" value=""/></div>
+		<form action="/newsletter/subscriptions" method="post">
 			<label class="email">Email
-				<input type="email" name="EMAIL" value="" required="required"/>
+				<input type="email" name="email" value="" required="required"/>
 			</label>
 			<label class="text">First name
-				<input type="text" name="FNAME" value=""/>
+				<input type="text" name="firstname" autocomplete="given-name" value=""/>
 			</label>
 			<label class="text">Last name
-				<input type="text" name="LNAME" value=""/>
+				<input type="text" name="lastname" autocomplete="family-name" value=""/>
 			</label>
 			<fieldset>
 				<p>What kind of email would you like to receive?</p>
 				<ul>
 					<li>
-						<label class="checkbox"><input type="checkbox" value="1" name="group[78748][1]" checked="checked"/>The occasional Standard Ebooks newsletter</label>
+						<label class="checkbox"><input type="checkbox" value="1" name="newsletter" checked="checked"/>The occasional Standard Ebooks newsletter</label>
 					</li>
 					<li>
-						<label class="checkbox"><input type="checkbox" value="2" name="group[78748][2]" checked="checked"/>A monthly summary of new ebook releases</label>
+						<label class="checkbox"><input type="checkbox" value="2" name="monthlysummary" checked="checked"/>A monthly summary of new ebook releases</label>
 					</li>
 				</ul>
 			</fieldset>
