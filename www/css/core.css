@@ -625,6 +625,19 @@ input[type="checkbox"]:focus{
 	outline: none;
 }
 
+ul.error{
+	border: 2px solid #c33b3b;
+	border-radius: 3px;
+	background: #e14646;
+	padding: 1rem;
+	color: #fff;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .75);
+}
+
+ul.error li:only-child{
+	list-style: none;
+}
+
 .ebooks nav li.highlighted a:focus,
 a.button:focus,
 input[type="email"]:focus,
@@ -1987,7 +2000,7 @@ article.ebook section aside.donation p::after{
 	left: -5000px;
 }
 
-form[action*="list-manage.com"]{
+form[action="/newsletter/subscribers"]{
 	display: grid;
 	grid-gap: 1rem;
 	grid-template-columns: 1fr 1fr;
@@ -1995,21 +2008,21 @@ form[action*="list-manage.com"]{
 	margin-bottom: 0;
 }
 
-form[action*="list-manage.com"] label.email{
+form[action="/newsletter/subscribers"] label.email{
 	grid-column: 1 / span 2;
 }
 
-form[action*="list-manage.com"] ul{
+form[action="/newsletter/subscribers"] ul{
 	list-style: none;
 }
 
-form[action*="list-manage.com"] button{
+form[action="/newsletter/subscribers"] button{
 	grid-column: 2;
 	justify-self: end;
 	margin-left: 0;
 }
 
-form[action*="list-manage.com"] fieldset{
+form[action="/newsletter/subscribers"] fieldset{
 	margin-top: 1rem;
 	grid-column: 1 / span 2;
 }
@@ -2761,8 +2774,8 @@ aside button.close:active{
 		margin-top: 0;
 	}
 
-	form[action*="list-manage.com"] label.text,
-	form[action*="list-manage.com"] fieldset{
+	form[action="/newsletter/subscribers"] label.text,
+	form[action="/newsletter/subscribers"] fieldset{
 		grid-column: 1 / span 2;
 	}
 

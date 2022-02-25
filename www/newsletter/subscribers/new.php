@@ -1,5 +1,17 @@
 <?
+use function Safe\session_unset;
+
 require_once('Core.php');
+session_start();
+
+$subscriber = $_SESSION['subscriber'] ?? new NewsletterSubscriber();
+$exception = $_SESSION['exception'] ?? null;
+
+if($exception){
+	http_response_code(400);
+	session_unset();
+}
+
 ?><?= Template::Header(['title' => 'Subscribe to the Standard Ebooks newsletter', 'highlight' => 'newsletter', 'description' => 'Subscribe to the Standard Ebooks newsletter to receive occasional updates about the project.']) ?>
 <main>
 	<article class="has-hero">
@@ -13,24 +25,25 @@ require_once('Core.php');
 			<img src="/images/the-newsletter@2x.jpg" alt="An old man in Renaissance-era costume reading a sheet of paper."/>
 		</picture>
 		<p>Subscribe to receive news, updates, and more from Standard Ebooks. Your information will never be shared, and you can unsubscribe at any time.</p>
-		<form action="/newsletter/subscriptions" method="post">
+		<?= Template::Error(['exception' => $exception]) ?>
+		<form action="/newsletter/subscribers" method="post">
 			<label class="email">Email
-				<input type="email" name="email" value="" required="required"/>
+				<input type="email" name="email" value="<?= Formatter::ToPlainText($subscriber->Email) ?>" required="required"/>
 			</label>
 			<label class="text">First name
-				<input type="text" name="firstname" autocomplete="given-name" value=""/>
+				<input type="text" name="firstname" autocomplete="given-name" value="<?= Formatter::ToPlainText($subscriber->FirstName) ?>"/>
 			</label>
 			<label class="text">Last name
-				<input type="text" name="lastname" autocomplete="family-name" value=""/>
+				<input type="text" name="lastname" autocomplete="family-name" value="<?= Formatter::ToPlainText($subscriber->LastName) ?>"/>
 			</label>
 			<fieldset>
 				<p>What kind of email would you like to receive?</p>
 				<ul>
 					<li>
-						<label class="checkbox"><input type="checkbox" value="1" name="newsletter" checked="checked"/>The occasional Standard Ebooks newsletter</label>
+						<label class="checkbox"><input type="checkbox" value="1" name="newsletter"<? if($subscriber->IsSubscribedToNewsletter){ ?> checked="checked"<? } ?>/>The occasional Standard Ebooks newsletter</label>
 					</li>
 					<li>
-						<label class="checkbox"><input type="checkbox" value="2" name="monthlysummary" checked="checked"/>A monthly summary of new ebook releases</label>
+						<label class="checkbox"><input type="checkbox" value="1" name="monthlysummary"<? if($subscriber->IsSubscribedToSummary){ ?> checked="checked"<? } ?>/>A monthly summary of new ebook releases</label>
 					</li>
 				</ul>
 			</fieldset>

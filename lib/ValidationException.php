@@ -15,7 +15,7 @@ class ValidationException extends Exception{
 		return rtrim($output, '; ');
 	}
 
-	public function Add($exception, $isFatal = false){
+	public function Add(Exception $exception, bool $isFatal = false): void{
 		if(is_a($exception, static::class)){
 			foreach($exception->Exceptions as $childException){
 				$this->Add($childException);
@@ -43,7 +43,7 @@ class ValidationException extends Exception{
 		return $val;
 	}
 
-	public function HasChild(string $exception): bool{
+	public function Has(string $exception): bool{
 		foreach($this->Exceptions as $childException){
 			if(is_a($childException, $exception)){
 				return true;
@@ -53,7 +53,7 @@ class ValidationException extends Exception{
 		return false;
 	}
 
-	public function Clear(){
+	public function Clear(): void{
 		unset($this->Exceptions);
 		$this->Exceptions = [];
 		$this->HasExceptions = false;

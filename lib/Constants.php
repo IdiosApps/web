@@ -16,9 +16,12 @@ const SORT_AUTHOR_ALPHA = 'author-alpha';
 const SORT_READING_EASE = 'reading-ease';
 const SORT_LENGTH = 'length';
 
-const GET = 0;
-const POST = 1;
-const COOKIE = 2;
+const REST = 0;
+const FORM = 1;
+
+const GET = 'GET';
+const POST = 'POST';
+const COOKIE = 'COOKIE';
 
 const HTTP_VAR_INT = 0;
 const HTTP_VAR_STR = 1;
