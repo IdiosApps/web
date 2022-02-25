@@ -2,6 +2,7 @@
 use function Safe\session_unset;
 
 require_once('Core.php');
+
 session_start();
 
 $subscriber = $_SESSION['subscriber'] ?? new NewsletterSubscriber();
@@ -25,7 +26,9 @@ if($exception){
 			<img src="/images/the-newsletter@2x.jpg" alt="An old man in Renaissance-era costume reading a sheet of paper."/>
 		</picture>
 		<p>Subscribe to receive news, updates, and more from Standard Ebooks. Your information will never be shared, and you can unsubscribe at any time.</p>
+
 		<?= Template::Error(['exception' => $exception]) ?>
+
 		<form action="/newsletter/subscribers" method="post">
 			<label class="email">Email
 				<input type="email" name="email" value="<?= Formatter::ToPlainText($subscriber->Email) ?>" required="required"/>
