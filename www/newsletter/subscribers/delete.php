@@ -1,13 +1,9 @@
 <?
 require_once('Core.php');
 
-$uuid = HttpInput::Str(GET, 'uuid', false);
+$uuid = HttpInput::Str(GET, 'uuid');
 
 try{
-	if(!$uuid){
-		throw new Exceptions\InvalidNewsletterSubscriberException();
-	}
-
 	$subscriber = NewsletterSubscriber::Get($uuid);
 
 	$subscriber->Delete();

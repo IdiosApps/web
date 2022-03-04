@@ -62,6 +62,10 @@ class NewsletterSubscriber extends PropertiesBase{
 	}
 
 	public static function Get(string $uuid): NewsletterSubscriber{
+		if($uuid == ''){
+			throw new Exceptions\InvalidNewsletterSubscriberException();
+		}
+
 		$subscribers = Db::Query('select * from NewsletterSubscribers where Uuid = ?;', [$uuid], 'NewsletterSubscriber');
 
 		if(sizeof($subscribers) == 0){
