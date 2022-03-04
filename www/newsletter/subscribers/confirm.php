@@ -4,11 +4,11 @@ require_once('Core.php');
 $uuid = HttpInput::Str(GET, 'uuid', false);
 
 try{
-	if($email){
+	if($uuid){
 		$subscribers = Db::Query('select * from NewsletterSubscribers where Uuid = ? and IsConfirmed = false', [], 'NewsletterSubscriber');
 
 		if(sizeof($subscribers) == 0){
-			throw new exceptions\InvalidNewsletterSubscriberException();
+			throw new Exceptions\InvalidNewsletterSubscriberException();
 		}
 		else{
 			foreach($subscribers as $subscriber){

@@ -17,7 +17,7 @@ class ValidationException extends SeException{
 		return rtrim($output, '; ');
 	}
 
-	public function Add(Exception $exception, bool $isFatal = false): void{
+	public function Add(\Exception $exception, bool $isFatal = false): void{
 		if(is_a($exception, static::class)){
 			foreach($exception->Exceptions as $childException){
 				$this->Add($childException);

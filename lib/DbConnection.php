@@ -10,7 +10,10 @@ class DbConnection{
 	public function __construct(?string $defaultDatabase = null, string $host = 'localhost', ?string $user = null, string$password = '', bool $forceUtf8 = true, bool $require = true){
 		if($user === null){
 			// Get the user running the script for local socket login
-			$user = posix_getpwuid(posix_geteuid())['name'];
+			$user = posix_getpwuid(posix_geteuid());
+			if($user){
+				$user = $user['name'];
+			}
 		}
 
 		$connectionString = 'mysql:';

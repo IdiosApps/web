@@ -3,6 +3,7 @@ use function Safe\fopen;
 use function Safe\fwrite;
 use function Safe\fclose;
 use function Safe\error_log;
+use function Safe\gmdate;
 
 class Logger{
 	public static function WriteGithubWebhookLogEntry(string $requestId, string $text): void{

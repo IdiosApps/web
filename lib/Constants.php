@@ -1,6 +1,7 @@
 <?
 // Auto-included by Composer in composer.json to satisfy PHPStan
 use function Safe\define;
+use function Safe\gmdate;
 use function Safe\strtotime;
 
 const SITE_STATUS_LIVE = 		'live';

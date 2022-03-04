@@ -60,7 +60,7 @@ try{
 		$i++;
 	}
 }
-catch(SeeOtherEbookException $ex){
+catch(Exceptions\SeeOtherEbookException $ex){
 	http_response_code(301);
 	header('Location: ' . $ex->Url);
 	exit();

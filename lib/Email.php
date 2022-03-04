@@ -12,13 +12,13 @@ class Email{
 	public $TextBody = '';
 	public $Attachments = array();
 
-	public function Send(){
+	public function Send(): bool{
 		if($this->ReplyTo == ''){
 			$this->ReplyTo = $this->From;
 		}
 
 		if($this->To === null || $this->To == ''){
-			return;
+			return false;
 		}
 
 		$phpMailer = new PHPMailer(true);
@@ -73,7 +73,7 @@ class Email{
 		return true;
 	}
 
-	public function __construct($isNoReplyEmail = false){
+	public function __construct(bool $isNoReplyEmail = false){
 		if($isNoReplyEmail){
 			$this->From = NO_REPLY_EMAIL_ADDRESS;
 			$this->FromName = 'Standard Ebooks';
