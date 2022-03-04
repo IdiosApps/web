@@ -31,13 +31,13 @@ if($exception){
 
 		<form action="/newsletter/subscribers" method="post">
 			<label class="email">Email
-				<input type="email" name="email" value="<?= Formatter::ToPlainText($subscriber->Email) ?>" required="required"/>
+				<input type="email" name="email" value="<?= Formatter::ToPlainText($subscriber->Email) ?>" maxlength="80" required="required"/>
 			</label>
 			<label class="text">First name
-				<input type="text" name="firstname" autocomplete="given-name" value="<?= Formatter::ToPlainText($subscriber->FirstName) ?>"/>
+				<input type="text" name="firstname" autocomplete="given-name" maxlength="80" value="<?= Formatter::ToPlainText($subscriber->FirstName) ?>"/>
 			</label>
 			<label class="text">Last name
-				<input type="text" name="lastname" autocomplete="family-name" value="<?= Formatter::ToPlainText($subscriber->LastName) ?>"/>
+				<input type="text" name="lastname" autocomplete="family-name" maxlength="80" value="<?= Formatter::ToPlainText($subscriber->LastName) ?>"/>
 			</label>
 			<fieldset>
 				<p>What kind of email would you like to receive?</p>

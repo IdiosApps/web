@@ -6,7 +6,7 @@ if(!$exception){
 
 $exceptions = [];
 
-if($exception instanceof ValidationException){
+if($exception instanceof Exceptions\ValidationException){
 	$exceptions = $exception->Exceptions;
 }
 else{

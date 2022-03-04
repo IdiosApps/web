@@ -7,6 +7,15 @@ const SITE_STATUS_LIVE = 		'live';
 const SITE_STATUS_DEV =			'dev';
 define('SITE_STATUS', getenv('SITE_STATUS') ?: SITE_STATUS_DEV); // Set in the PHP FPM pool configuration. Have to use define() and not const so we can use a function.
 
+// No trailing slash on any of the below constants.
+const SITE_URL =			'https://standardebooks.org';
+const SITE_ROOT =			'/standardebooks.org';
+const WEB_ROOT =			SITE_ROOT . '/web/www';
+const REPOS_PATH =			SITE_ROOT . '/ebooks';
+const TEMPLATES_PATH =			SITE_ROOT . '/web/templates';
+const MANUAL_PATH =			WEB_ROOT . '/manual';
+const EBOOKS_DIST_PATH =		WEB_ROOT . '/ebooks/';
+
 const DATABASE_DEFAULT_DATABASE = 	'se';
 const DATABASE_DEFAULT_HOST = 		'localhost';
 
@@ -15,6 +24,11 @@ const SORT_NEWEST = 'newest';
 const SORT_AUTHOR_ALPHA = 'author-alpha';
 const SORT_READING_EASE = 'reading-ease';
 const SORT_LENGTH = 'length';
+
+const NO_REPLY_EMAIL_ADDRESS = 'noreply@standardebooks.org';
+const EMAIL_SMTP_HOST = 'test.com';
+const EMAIL_SMTP_USERNAME = SITE_ROOT . '/config/secrets/standardebooks@postmarkapp.com';
+const EMAIL_SMTP_PASSWORD = SITE_ROOT . '/config/secrets/standardebooks@postmarkapp.com';
 
 const REST = 0;
 const FORM = 1;
@@ -49,15 +63,6 @@ define('PD_YEAR', intval(gmdate('Y')) - 96);
 define('DONATION_HOLIDAY_ALERT_ON', time() > strtotime('November 15, ' . gmdate('Y'))  || time() < strtotime('January 7, ' . gmdate('Y')));
 define('DONATION_ALERT_ON', DONATION_HOLIDAY_ALERT_ON || rand(1, 4) == 2);
 define('DONATION_DRIVE_ON', false);
-
-// No trailing slash on any of the below constants.
-const SITE_URL =			'https://standardebooks.org';
-const SITE_ROOT =			'/standardebooks.org';
-const WEB_ROOT =			SITE_ROOT . '/web/www';
-const REPOS_PATH =			SITE_ROOT . '/ebooks';
-const TEMPLATES_PATH =			SITE_ROOT . '/web/templates';
-const MANUAL_PATH =			WEB_ROOT . '/manual';
-const EBOOKS_DIST_PATH =		WEB_ROOT . '/ebooks/';
 
 const GITHUB_SECRET_FILE_PATH =		SITE_ROOT . '/config/secrets/se-vcs-bot@github.com'; // Set in the GitHub organization global webhook settings.
 const GITHUB_WEBHOOK_LOG_FILE_PATH =	'/var/log/local/webhooks-github.log'; // Must be writable by `www-data` Unix user.

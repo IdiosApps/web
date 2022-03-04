@@ -1,7 +1,9 @@
 <?
+namespace Exceptions;
+
 use function Safe\json_encode;
 
-class ValidationException extends Exception{
+class ValidationException extends SeException{
 	public $Exceptions = [];
 	public $HasExceptions = false;
 	public $IsFatal = false;
