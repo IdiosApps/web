@@ -41,6 +41,10 @@ class NewsletterSubscriber extends PropertiesBase{
 		Db::Query('update NewsletterSubscribers set IsConfirmed = true where NewsletterSubscriberId = ?;', [$this->NewsletterSubscriberId]);
 	}
 
+	public function Delete(): void{
+		Db::Query('delete from NewsletterSubscribers where  NewsletterSubscriberId = ?;', [$this->NewsletterSubscriberId]);
+	}
+
 	public function Validate(): void{
 		$error = new Exceptions\ValidationException();
 
@@ -55,5 +59,15 @@ class NewsletterSubscriber extends PropertiesBase{
 		if($error->HasExceptions){
 			throw $error;
 		}
+	}
+
+	public static function Get(string $uuid): NewsletterSubscriber{
+		$subscribers = Db::Query('select * from NewsletterSubscribers where Uuid = ?;', [$uuid], 'NewsletterSubscriber');
+
+		if(sizeof($subscribers) == 0){
+			throw new Exceptions\InvalidNewsletterSubscriberException();
+		}
+
+		return $subscribers[0];
 	}
 }
