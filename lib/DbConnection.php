@@ -147,11 +147,6 @@ class DbConnection{
 			}
 		}
 
-		// If only one rowset is returned, change the result object
-		if(sizeof($result) == 1){
-			$result = $result[0];
-		}
-
 		return $result;
 	}
 

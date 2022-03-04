@@ -11,6 +11,15 @@ class NewsletterSubscriber extends PropertiesBase{
 	public $IsSubscribedToSummary = true;
 	public $IsSubscribedToNewsletter = true;
 	public $Timestamp;
+	public $Url = null;
+
+	protected function GetUrl(){
+		if($this->Url === null){
+			$this->Url = SITE_URL . '/newsletter/subscribers/' . $this->Uuid;
+		}
+
+		return $this->Url;
+	}
 
 	public function Create(): void{
 		$this->Validate();
@@ -33,7 +42,8 @@ class NewsletterSubscriber extends PropertiesBase{
 		// Send the double opt-in confirmation email
 		$em = new Email(true);
 		$em->To = $this->Email;
-		$em->Body = 'Test';
+		$em->Body = Template::EmailNewsletterConfirmation(['subscriber' => $this]);
+		$em->TextBody = Template::EmailNewsletterConfirmationText(['subscriber' => $this]);
 		$em->Send();
 	}
 

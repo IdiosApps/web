@@ -1,11 +1,8 @@
 <?
 require_once('Core.php');
 
-$uuid = HttpInput::Str(GET, 'uuid');
-
 try{
-	$subscriber = NewsletterSubscriber::Get($uuid);
-
+	$subscriber = NewsletterSubscriber::Get(HttpInput::Str(GET, 'uuid') ?? '');
 	$subscriber->Confirm();
 }
 catch(Exceptions\InvalidNewsletterSubscriberException $ex){
@@ -16,7 +13,9 @@ catch(Exceptions\InvalidNewsletterSubscriberException $ex){
 ?><?= Template::Header(['title' => 'Your subscription to the Standard Ebooks newsletter has been confirmed', 'highlight' => 'newsletter', 'description' => 'Your subscription to the Standard Ebooks newsletter has been confirmed.']) ?>
 <main>
 	<article>
-		You've been confirmed!
+		<h1>Your subscription is activated!</h1>
+		<p>Thank you! You’ll now receive Standard Ebooks email newsletters.</p>
+		<p>To unsubscribe, simply follow the link at the bottom of any of our newsletters, or <a href="<?= $subscriber->Url ?>/delete">click here</a>.</p>
 	</article>
 </main>
 <?= Template::Footer() ?>

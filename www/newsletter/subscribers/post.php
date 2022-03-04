@@ -28,10 +28,11 @@ try{
 	else{
 		// Access via REST api; 201 CREATED with location
 		http_response_code(201);
-		header('Location: /newsletter/subscribers/' . $subscriber->NewsletterSubscriberId);
+		header('Location: ' . $subscriber->Url);
 	}
 }
 catch(Exceptions\SeException $ex){
+	// Validation failed
 	if($requestType == FORM){
 		$_SESSION['subscriber'] = $subscriber;
 		$_SESSION['exception'] = $ex;
@@ -45,5 +46,3 @@ catch(Exceptions\SeException $ex){
 		http_response_code(400);
 	}
 }
-
-?>
