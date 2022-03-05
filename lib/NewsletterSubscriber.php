@@ -11,7 +11,7 @@ class NewsletterSubscriber extends PropertiesBase{
 	public $IsSubscribedToSummary = true;
 	public $IsSubscribedToNewsletter = true;
 	public $Timestamp;
-	public $Url = null;
+	protected $Url = null;
 
 	protected function GetUrl(): string{
 		if($this->Url === null){
@@ -43,6 +43,7 @@ class NewsletterSubscriber extends PropertiesBase{
 		$em = new Email(true);
 		$em->PostmarkStream = EMAIL_POSTMARK_STREAM_BROADCAST;
 		$em->To = $this->Email;
+		$em->Subject = 'Action required: activate your newsletter subscription';
 		$em->Body = Template::EmailNewsletterConfirmation(['subscriber' => $this]);
 		$em->TextBody = Template::EmailNewsletterConfirmationText(['subscriber' => $this]);
 		$em->Send();

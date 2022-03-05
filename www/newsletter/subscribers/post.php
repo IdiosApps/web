@@ -4,13 +4,24 @@ use function Safe\session_unset;
 
 require_once('Core.php');
 
+if($_SERVER['REQUEST_METHOD'] != 'POST'){
+	http_response_code(405);
+	exit();
+}
+
 session_start();
 
-$requestType = preg_match('/\btext\/html\b/ius', $_SERVER['HTTP_ACCEPT']) ? FORM : REST;
+$requestType = preg_match('/\btext\/html\b/ius', $_SERVER['HTTP_ACCEPT']) ? WEB : REST;
 
 $subscriber = new NewsletterSubscriber();
 
 try{
+	$subscriber->FirstName = HttpInput::Str(POST, 'firstname', false);
+	$subscriber->LastName = HttpInput::Str(POST, 'lastname', false);
+	$subscriber->Email = HttpInput::Str(POST, 'email', false);
+	$subscriber->IsSubscribedToNewsletter = HttpInput::Bool(POST, 'newsletter');
+	$subscriber->IsSubscribedToSummary = HttpInput::Bool(POST, 'monthlysummary');
+
 	$captcha = $_SESSION['captcha'] ?? null;
 
 	if($captcha === null || $captcha !== HttpInput::Str(POST, 'captcha', false)){
@@ -21,17 +32,11 @@ try{
 		throw $error;
 	}
 
-	$subscriber->FirstName = HttpInput::Str(POST, 'firstname', false);
-	$subscriber->LastName = HttpInput::Str(POST, 'lastname', false);
-	$subscriber->Email = HttpInput::Str(POST, 'email', false);
-	$subscriber->IsSubscribedToNewsletter = HttpInput::Bool(POST, 'newsletter');
-	$subscriber->IsSubscribedToSummary = HttpInput::Bool(POST, 'monthlysummary');
-
 	$subscriber->Create();
 
 	session_unset();
 
-	if($requestType == FORM){
+	if($requestType == WEB){
 		http_response_code(303);
 		header('Location: /newsletter/subscribers/success');
 	}
@@ -43,7 +48,7 @@ try{
 }
 catch(Exceptions\SeException $ex){
 	// Validation failed
-	if($requestType == FORM){
+	if($requestType == WEB){
 		$_SESSION['subscriber'] = $subscriber;
 		$_SESSION['exception'] = $ex;
 

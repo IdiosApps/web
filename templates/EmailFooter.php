@@ -1,6 +1,6 @@
 	<div class="footer">
 		<p>
-			<a href="https://standardebooks.org/donate">Donate</a> • <a href="https://standardebooks.org/contribute">Get involved</a> • <a href="https://standardebooks.org/opds">OPDS</a> • <a href="https://standardebooks.org/rss/new-releases">New releases RSS feed</a>
+			<a href="https://standardebooks.org/donate">Donate</a> &bull; <a href="https://standardebooks.org/contribute">Get involved</a> &bull; <a href="https://standardebooks.org/opds">OPDS</a> &bull; <a href="https://standardebooks.org/rss/new-releases">New releases RSS feed</a>
 		</p>
 		<p>
 			<a href="https://standardebooks.org">
