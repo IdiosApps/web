@@ -41,6 +41,7 @@ class NewsletterSubscriber extends PropertiesBase{
 
 		// Send the double opt-in confirmation email
 		$em = new Email(true);
+		$em->PostmarkStream = EMAIL_POSTMARK_STREAM_BROADCAST;
 		$em->To = $this->Email;
 		$em->Body = Template::EmailNewsletterConfirmation(['subscriber' => $this]);
 		$em->TextBody = Template::EmailNewsletterConfirmationText(['subscriber' => $this]);

@@ -32,7 +32,7 @@ const NO_REPLY_EMAIL_ADDRESS = 'admin@standardebooks.org';
 const EMAIL_SMTP_HOST = 'smtp-broadcasts.postmarkapp.com';
 define(EMAIL_SMTP_USERNAME, file_get_contents(SITE_ROOT . '/config/secrets/postmarkapp.com') ?: '');
 const EMAIL_SMTP_PASSWORD = EMAIL_SMTP_USERNAME;
-const EMAIL_STREAM_BROADCAST = 'broadcast';
+const EMAIL_POSTMARK_STREAM_BROADCAST = 'broadcast';
 
 const REST = 0;
 const FORM = 1;

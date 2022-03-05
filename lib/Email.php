@@ -11,7 +11,7 @@ class Email{
 	public $Body = '';
 	public $TextBody = '';
 	public $Attachments = array();
-	public $PostmarkStream = EMAIL_STREAM_BROADCAST;
+	public $PostmarkStream = null;
 
 	public function Send(): bool{
 		if($this->ReplyTo == ''){
