@@ -26,10 +26,13 @@ const SORT_AUTHOR_ALPHA = 'author-alpha';
 const SORT_READING_EASE = 'reading-ease';
 const SORT_LENGTH = 'length';
 
-const NO_REPLY_EMAIL_ADDRESS = 'noreply@standardebooks.org';
-const EMAIL_SMTP_HOST = 'test.com';
-const EMAIL_SMTP_USERNAME = SITE_ROOT . '/config/secrets/standardebooks@postmarkapp.com';
-const EMAIL_SMTP_PASSWORD = SITE_ROOT . '/config/secrets/standardebooks@postmarkapp.com';
+const CAPTCHA_IMAGE_HEIGHT = 71 + 15;
+const CAPTCHA_IMAGE_WIDTH = 427;
+const NO_REPLY_EMAIL_ADDRESS = 'admin@standardebooks.org';
+const EMAIL_SMTP_HOST = 'smtp-broadcasts.postmarkapp.com';
+define(EMAIL_SMTP_USERNAME, file_get_contents(SITE_ROOT . '/config/secrets/postmarkapp.com') ?: '');
+const EMAIL_SMTP_PASSWORD = EMAIL_SMTP_USERNAME;
+const EMAIL_STREAM_BROADCAST = 'broadcast';
 
 const REST = 0;
 const FORM = 1;

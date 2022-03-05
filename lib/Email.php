@@ -11,6 +11,7 @@ class Email{
 	public $Body = '';
 	public $TextBody = '';
 	public $Attachments = array();
+	public $PostmarkStream = EMAIL_STREAM_BROADCAST;
 
 	public function Send(): bool{
 		if($this->ReplyTo == ''){
@@ -51,6 +52,10 @@ class Email{
 			$phpMailer->Host = EMAIL_SMTP_HOST;
 			$phpMailer->Username = EMAIL_SMTP_USERNAME;
 			$phpMailer->Password = EMAIL_SMTP_PASSWORD;
+
+			if($this->PostmarkStream !== null){
+				$phpMailer->addCustomHeader('X-PM-Message-Stream', $this->PostmarkStream);
+			}
 
 			if(SITE_STATUS == SITE_STATUS_DEV){
 				Logger::WriteErrorLogEntry('Sending mail to ' . $this->To . ' from ' . $this->From);

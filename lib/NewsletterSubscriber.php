@@ -13,7 +13,7 @@ class NewsletterSubscriber extends PropertiesBase{
 	public $Timestamp;
 	public $Url = null;
 
-	protected function GetUrl(){
+	protected function GetUrl(): string{
 		if($this->Url === null){
 			$this->Url = SITE_URL . '/newsletter/subscribers/' . $this->Uuid;
 		}

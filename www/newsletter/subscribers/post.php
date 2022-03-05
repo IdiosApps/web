@@ -11,6 +11,16 @@ $requestType = preg_match('/\btext\/html\b/ius', $_SERVER['HTTP_ACCEPT']) ? FORM
 $subscriber = new NewsletterSubscriber();
 
 try{
+	$captcha = $_SESSION['captcha'] ?? null;
+
+	if($captcha === null || $captcha !== HttpInput::Str(POST, 'captcha', false)){
+		$error = new Exceptions\ValidationException();
+
+		$error->Add(new Exceptions\InvalidCaptchaException());
+
+		throw $error;
+	}
+
 	$subscriber->FirstName = HttpInput::Str(POST, 'firstname', false);
 	$subscriber->LastName = HttpInput::Str(POST, 'lastname', false);
 	$subscriber->Email = HttpInput::Str(POST, 'email', false);

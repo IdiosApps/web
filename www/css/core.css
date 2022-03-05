@@ -1511,7 +1511,8 @@ input[type="search"]{
 	box-shadow: 1px 1px 0 rgba(255, 255, 255, .5) inset;
 }
 
-label[class]:not(.text) input{
+label.email input,
+label.search input{
 	padding-left: 2.5rem;
 }
 
@@ -2008,8 +2009,19 @@ form[action="/newsletter/subscribers"]{
 	margin-bottom: 0;
 }
 
-form[action="/newsletter/subscribers"] label.email{
+form[action="/newsletter/subscribers"] label.email,
+form[action="/newsletter/subscribers"] label.captcha{
 	grid-column: 1 / span 2;
+}
+
+form[action="/newsletter/subscribers"] label.captcha div{
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+form[action="/newsletter/subscribers"] label.captcha div input{
+	align-self: center;
 }
 
 form[action="/newsletter/subscribers"] ul{
@@ -2775,6 +2787,7 @@ aside button.close:active{
 	}
 
 	form[action="/newsletter/subscribers"] label.text,
+	form[action="/newsletter/subscribers"] label.captcha,
 	form[action="/newsletter/subscribers"] fieldset{
 		grid-column: 1 / span 2;
 	}
