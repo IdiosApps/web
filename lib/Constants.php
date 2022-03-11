@@ -1,6 +1,7 @@
 <?
 // Auto-included by Composer in composer.json to satisfy PHPStan
 use function Safe\define;
+use function Safe\file_get_contents;
 use function Safe\gmdate;
 use function Safe\strtotime;
 
@@ -33,7 +34,7 @@ const SORT_READING_EASE = 'reading-ease';
 const SORT_LENGTH = 'length';
 
 const CAPTCHA_IMAGE_HEIGHT = 72;
-const CAPTCHA_IMAGE_WIDTH = 227;
+const CAPTCHA_IMAGE_WIDTH = 230;
 const NO_REPLY_EMAIL_ADDRESS = 'admin@standardebooks.org';
 const EMAIL_SMTP_HOST = 'smtp-broadcasts.postmarkapp.com';
 define('EMAIL_SMTP_USERNAME', trim(file_get_contents(SITE_ROOT . '/config/secrets/postmarkapp.com')) ?: '');

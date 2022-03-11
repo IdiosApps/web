@@ -1,8 +1,8 @@
 <?
+require_once('Core.php');
+
 use function Safe\preg_match;
 use function Safe\session_unset;
-
-require_once('Core.php');
 
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
 	http_response_code(405);

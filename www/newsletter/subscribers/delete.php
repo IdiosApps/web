@@ -1,6 +1,8 @@
 <?
 require_once('Core.php');
 
+use function Safe\preg_match;
+
 // We may use GET if we're called from an unsubscribe link in an email
 if(!in_array($_SERVER['REQUEST_METHOD'], ['DELETE', 'GET'])){
 	http_response_code(405);

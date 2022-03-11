@@ -1,9 +1,9 @@
 <?
+require_once('Core.php');
+
 use function Safe\session_unset;
 
 use Gregwar\Captcha\CaptchaBuilder;
-
-require_once('Core.php');
 
 session_start();
 
@@ -42,7 +42,7 @@ if($exception){
 				<input type="text" name="lastname" autocomplete="family-name" maxlength="80" value="<?= Formatter::ToPlainText($subscriber->LastName) ?>"/>
 			</label>
 			<label class="captcha">
-				Type the letters in the following image
+				Type the letters in the image
 				<div>
 					<input type="text" name="captcha" required="required" />
 					<img src="/images/captcha" alt="A visual CAPTCHA." height="<?= CAPTCHA_IMAGE_HEIGHT ?>" width="<?= CAPTCHA_IMAGE_WIDTH ?>" />
