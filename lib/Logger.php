@@ -14,7 +14,7 @@ class Logger{
 		self::WriteLogEntry(GITHUB_WEBHOOK_LOG_FILE_PATH, $requestId . "\t" . $text);
 	}
 
-	public static function WriteLogEntry(string $file, string $text){
+	public static function WriteLogEntry(string $file, string $text): void{
 		try{
 			$fp = fopen($file, 'a+');
 		}
