@@ -30,7 +30,7 @@ try{
 	$hash = $splitHash[1];
 
 	if(!hash_equals($hash, hash_hmac($hashAlgorithm, $post, preg_replace("/[\r\n]/ius", '', file_get_contents(GITHUB_SECRET_FILE_PATH) ?: '') ?? ''))){
-		throw new Exceptions\WebhookException('Invalid GitHub webhook secret.', $post);
+		throw new Exceptions\InvalidCredentialsException();
 	}
 
 	// Sanity check before we continue.
@@ -133,6 +133,10 @@ try{
 
 	// "Success, no content"
 	http_response_code(204);
+}
+catch(Exceptions\InvalidCredentialsException $ex){
+	// "Forbidden"
+	http_response_code(403);
 }
 catch(Exceptions\WebhookException $ex){
 	// Uh oh, something went wrong!

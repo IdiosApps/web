@@ -80,3 +80,5 @@ const GITHUB_WEBHOOK_LOG_FILE_PATH =	'/var/log/local/webhooks-github.log'; // Mu
 
 // If we get GitHub push requests featuring these repos, silently ignore instead of returning an error.
 const GITHUB_IGNORED_REPOS =		['tools', 'manual', 'web'];
+
+const POSTMARK_WEBHOOK_LOG_FILE_PATH =	'/var/log/local/webhooks-postmark.log'; // Must be writable by `www-data` Unix user.
