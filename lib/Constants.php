@@ -35,11 +35,12 @@ const SORT_LENGTH = 'length';
 
 const CAPTCHA_IMAGE_HEIGHT = 72;
 const CAPTCHA_IMAGE_WIDTH = 230;
+
 const NO_REPLY_EMAIL_ADDRESS = 'admin@standardebooks.org';
 const EMAIL_SMTP_HOST = 'smtp-broadcasts.postmarkapp.com';
 define('EMAIL_SMTP_USERNAME', trim(file_get_contents(SITE_ROOT . '/config/secrets/postmarkapp.com')) ?: '');
 const EMAIL_SMTP_PASSWORD = EMAIL_SMTP_USERNAME;
-const EMAIL_POSTMARK_STREAM_BROADCAST = 'broadcast';
+const EMAIL_POSTMARK_STREAM_BROADCAST = 'the-standard-ebooks-newsletter';
 
 const REST = 0;
 const WEB = 1;
@@ -77,8 +78,6 @@ define('DONATION_DRIVE_ON', false);
 
 const GITHUB_SECRET_FILE_PATH =		SITE_ROOT . '/config/secrets/se-vcs-bot@github.com'; // Set in the GitHub organization global webhook settings.
 const GITHUB_WEBHOOK_LOG_FILE_PATH =	'/var/log/local/webhooks-github.log'; // Must be writable by `www-data` Unix user.
-
-// If we get GitHub push requests featuring these repos, silently ignore instead of returning an error.
-const GITHUB_IGNORED_REPOS =		['tools', 'manual', 'web'];
+const GITHUB_IGNORED_REPOS =		['tools', 'manual', 'web']; // If we get GitHub push requests featuring these repos, silently ignore instead of returning an error.
 
 const POSTMARK_WEBHOOK_LOG_FILE_PATH =	'/var/log/local/webhooks-postmark.log'; // Must be writable by `www-data` Unix user.
